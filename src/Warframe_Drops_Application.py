@@ -91,10 +91,21 @@ mission_types = sorted(list(set(mission_types)))
 col1, col2, col3 = st.columns(3)
 col2a, col2b = col2.columns(2)
 
-target = col1.text_input("Item/Warframe to Search for")
+target = col1.text_input("Item/Warframe to Search for", placeholder="Trumna")
+
 exclude_include = col2a.toggle("Exclude")
-selected_mission_types = col2b.multiselect(f"Mission types to {'Ex' if exclude_include else 'In'}clude", mission_types)
-rarity_pct_above = col3.number_input("Minimum Rarity Percentage", min_value=0, max_value=100)
+selected_mission_types = col2b.multiselect(
+    f"Mission types to {'Ex' if exclude_include else 'In'}clude",
+    mission_types,
+    placeholder="Disruption"
+)
+
+rarity_pct_above = col3.number_input(
+    "Minimum Rarity Percentage",
+    min_value=0,
+    max_value=100,
+    placeholder=5
+)
 
 st.columns(1)
 
