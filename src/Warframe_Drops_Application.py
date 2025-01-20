@@ -48,6 +48,9 @@ def get_missions_for_item(
 
         missions = drop_tables[drop_tables["drop"].isin(relic_list)]
 
+        if missions.empty:
+            return missions
+
         if selected_missions:
             if exclude:
                 missions = missions[
@@ -60,6 +63,9 @@ def get_missions_for_item(
 
         if rarity_pct_above:
             missions = missions[missions["chance_pct"] >= only_rarities]
+
+        if missions.empty:
+            return missions
 
         missions.sort_values(["drop", "chance_pct"], axis=0, ascending=False, inplace=True)
         return missions
