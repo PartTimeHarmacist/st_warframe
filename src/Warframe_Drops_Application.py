@@ -75,8 +75,7 @@ def get_missions_for_item(
 
 st.write("### Warframe Drops Application")
 
-st.write("This is a simple application that uses DE's official drop tables to help players find missions they"
-         "need to grind for specific Warframes or items.  Sorties/Bounties are not yet included.")
+st.markdown(retrieve_doc_file("intro_header.md"))
 
 drop_tables = pd.DataFrame(retrieve_warframe_drop_tables())
 drop_tables = drop_tables[["drop_table_type", "selector", "rotation", "drop", "chance_desc", "chance_pct"]]
