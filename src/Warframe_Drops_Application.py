@@ -28,6 +28,11 @@ def retrieve_warframe_drop_tables() -> Sequence:
         s.commit()
     return rtn.fetchall()
 
+@st.cache_data(ttl=300)
+@st.fragment
+def retrieve_doc_file(docs_file: str) -> str:
+    return (docs_root / docs_file).read_text("utf-8")
+
 @st.fragment
 def get_missions_for_item(
         search_target: str,
