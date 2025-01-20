@@ -113,6 +113,7 @@ if target:
     results = get_missions_for_item(target, exclude_include, selected_mission_types, rarity_pct_above)
     top_results = results.groupby("drop").head(1)
     top_missions = top_results.groupby("selector")["drop"].count()
+    top_missions = pd.DataFrame(top_missions).reset_index().sort_values(["drop"], axis=0, ascending=False)
 
     col1, col2 = st.columns(2)
 
@@ -120,7 +121,7 @@ if target:
     col1.dataframe(
         top_missions,
         use_container_width=True,
-        hide_index=False
+        hide_index=True
     )
 
     col2.write("Top Results")
