@@ -139,5 +139,9 @@ if target:
         use_container_width=True,
         hide_index=True
     )
+else:
+    st.dataframe(drop_tables, use_container_width=True, hide_index=True)
+
+st.columns(1)
 
 
