@@ -3,6 +3,7 @@ import pandas as pd
 from collections.abc import Sequence
 from sqlalchemy.sql import text
 import re
+from pathlib import Path
 
 st.set_page_config(
     page_title="Warframe Drops Application",
@@ -10,6 +11,12 @@ st.set_page_config(
 )
 
 conn = st.connection("postgresql", type="sql")
+
+docs_root = Path("/home/appuser/app/repo")
+if not docs_root.exists():
+    docs_root = Path.cwd()
+
+docs_root = docs_root / "src" / "docs"
 
 @st.cache_data(ttl=3600)
 @st.fragment
