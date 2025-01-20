@@ -149,4 +149,20 @@ else:
 
 st.columns(1)
 
+st.divider()
 
+st.markdown("#### Drop Table Browser")
+st.markdown("Browse the full drop tables by drop table type below.")
+
+col1, col2 = st.columns(2)
+
+selector = col1.selectbox("Drop Table", drop_tables["drop_table_type"].unique())
+prime_only_toggle = col2.toggle("Prime Only")
+
+st.columns(1)
+
+selector_results = drop_tables[drop_tables["drop_table_type"] == selector]
+if prime_only_toggle:
+    selector_results = selector_results[selector_results["drop"].str.contains("Prime")]
+
+st.dataframe(selector_results, use_container_width=True)
